@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stu</title>
+    <style>
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .popup {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .popup h1 {
+            font-size: 24px;
+            margin: 0 0 10px;
+        }
+
+        .popup p {
+            font-size: 16px;
+            margin: 0 0 20px;
+        }
+
+        .close-btn {
+            background-color: #e74c3c;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            float: right;
+        }
+
+        .confirm-btn {
+            background-color: #e74c3c;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            background-color: #c0392b;
+        }
+
+        .confirm-btn:hover {
+            background-color: #c0392b;
+        }
+
+        .mark {
+            /* 必须先清除float，再设置float 否则容易造成高度塌陷 */
+            clear: both;
+            float: right;
+            /* margin 对块级元素有效果 */
+            margin-top: 10px;
+            background-color: #ed4b39;
+            color: #fff;
+            font-size: small;
+            border-radius: 5px;
+            padding: 8px 10px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <p>
+            <button id="qbtn">一个按钮</button>
+        </p>
+    </div>
+    <div class="overlay">
+        <div class="popup">
+            <h1 style="text-align: center;">这是一个弹窗</h1>
+            <p>这里可以添加关于弹窗的描述信息这里可以添加关于弹窗的描述信息</p>
+            <button class="close-btn">关闭</button>
+            <button class="confirm-btn">确认</button>
+
+            <div class="mark">
+                备注信息:<br>
+                必须先清除float，再设置float 否则容易造成高度塌陷
+            </div>
+        </div>
+        <script>
+            const overlay = document.querySelector('.overlay');
+            const popup = document.querySelector('.popup');
+            const closeBtn = document.querySelector('.close-btn');
+
+            function showPopup() {
+                overlay.style.display = 'block';
+            }
+
+            function hidePopup() {
+                overlay.style.display = 'none';
+            }
+
+            closeBtn.addEventListener('click', hidePopup);
+            overlay.addEventListener('click', hidePopup);
+
+            let btn = document.getElementById('qbtn');
+            btn.addEventListener('click', function (e) {
+                showPopup();
+            })
+
+
+
+        </script>
+</body>
+
+</html>
