@@ -27,6 +27,7 @@
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             z-index: 1000;
+            min-width: 400px;
         }
 
         .popup h1 {
@@ -39,6 +40,15 @@
             margin: 0 0 20px;
         }
 
+        .confirm-btn {
+            background-color: #e74c3c;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
         .close-btn {
             background-color: #e74c3c;
             border: none;
@@ -47,15 +57,6 @@
             border-radius: 5px;
             cursor: pointer;
             float: right;
-        }
-
-        .confirm-btn {
-            background-color: #e74c3c;
-            border: none;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
         }
 
         .close-btn:hover {
@@ -91,9 +92,9 @@
     <div class="overlay">
         <div class="popup">
             <h1 style="text-align: center;">这是一个弹窗</h1>
-            <p>这里可以添加关于弹窗的描述信息这里可以添加关于弹窗的描述信息</p>
-            <button class="close-btn">关闭</button>
+            <p>这里可以添</p>
             <button class="confirm-btn">确认</button>
+            <button class="close-btn">关闭</button>
 
             <div class="mark">
                 备注信息:<br>
@@ -104,6 +105,8 @@
             const overlay = document.querySelector('.overlay');
             const popup = document.querySelector('.popup');
             const closeBtn = document.querySelector('.close-btn');
+            const confirmBtn = document.querySelector('.confirm-btn');
+
 
             function showPopup() {
                 overlay.style.display = 'block';
@@ -113,8 +116,14 @@
                 overlay.style.display = 'none';
             }
 
-            closeBtn.addEventListener('click', hidePopup);
             overlay.addEventListener('click', hidePopup);
+            closeBtn.addEventListener('click', hidePopup);
+            confirmBtn.addEventListener('click', function (event) {
+                // alert('kkk');
+                // event.stopPropagation()只能阻止事件在事件流中的传播，但无法阻止事件的默认行为
+                event.stopPropagation(); // 阻止事件冒泡传播，向父元素传递
+                event.preventDefault(); // 阻止事件的默认行为
+            });
 
             let btn = document.getElementById('qbtn');
             btn.addEventListener('click', function (e) {
